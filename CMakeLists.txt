@@ -3,4 +3,6 @@ project(cpp)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(cpp main.cpp)
+add_subdirectory(container)
+
+message("PROJECT_BINARY_DIR is " ${PROJECT_BINARY_DIR})
