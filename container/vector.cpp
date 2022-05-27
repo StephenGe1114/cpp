@@ -3,11 +3,22 @@
 //
 
 #include <iostream>
+#include <string>
 #include <vector>
 
+template<typename T>
+const std::ostream& operator<<(const std::ostream& s, const std::vector<T>& v)
+{
+    for(auto e: v)
+    {
+        s << e << " ";
+    }
+    return s << std::endl;
+}
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    std::vector<int> a{1, 2, 3, 4};
+    std::vector<std::string> word1{"the", "frogurt", "is", "also", "cursed"};
+    std::cout << "word1: " << word1 << std::endl;
     return 0;
 }
 
