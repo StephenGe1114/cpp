@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by 14991 on 2022/5/27.
 //
 
@@ -36,7 +36,7 @@ T multiply(T x, T y)
     return x * y * kSize;
 }
 
-int main()
+int test0()
 {
     int a = 3, b = 4, c = 5;
     double d1 = 11.11, d2 = 22.22;
@@ -57,6 +57,37 @@ int main()
 
     cout << "multiply(a, b) = " << multiply<int, 5>(a, b) << endl;
     cout << multiply(a, b) << endl;
+
+    return 0;
+}
+
+class Point
+{
+public:
+    Point(double dx = 0, double dy = 0)
+    : _dx(dx), _dy(dy)
+    {}
+
+    template <typename T>
+    T typeCast()
+    {
+        return (T) _dx * _dy;
+    }
+private:
+    double _dx;
+    double _dy;
+};
+
+void test1()
+{
+    Point pt(1.1, 3.2);
+    cout << pt.typeCast<int>() << endl;
+}
+
+int main()
+{
+//    test0();
+    test1();
 
     return 0;
 }
