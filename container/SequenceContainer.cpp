@@ -23,79 +23,204 @@ void display(const Container& c)
     cout << endl;
 }
 
+// 构造函数
 void test0()
 {
-    // vector构造函数
-    vector<char> vec1(3, 'a');
+    // vector常用的4种构造方式
+    vector<char> vec1(3, 'a'); // 1
     display(vec1);
-    vector<string> vec2{"beijing", "shanghai", "shenzhen", "nanjing"};
+    vector<string> vec2{"beijing", "shanghai", "shenzhen", "nanjing"}; // 2
     display(vec2);
-    vector<string> vec3(vec2.begin(), vec2.end());
+    vector<string> vec3(vec2.begin(), vec2.end()); // 3
     display(vec3);
-    vector<string> vec4(vec3);
+    vector<string> vec4(vec3); // 4
     display(vec4);
     cout << endl;
 
-    // assign，替换容器的内容
-    vec4.assign(3, "a");
-    display(vec4);
-    vec4.assign(vec2.begin(), vec2.end());
-    display(vec4);
-    vec4.assign({"c++", "11"});
-    display(vec4);
+    // deque常用的4种构造方式
+    deque<string> deq1(3, "a"); // 1
+    display(deq1);
+    deque<string> deq2{"beijing", "shanghai", "shenzhen", "nanjing"}; // 2
+    display(deq2);
+    deque<string> deq3(deq2.begin(), deq2.end()); // 3
+    display(deq3);
+    deque<string> deq4(deq3); // 4
+    display(deq4);
     cout << endl;
 
-    // 元素访问
-    vector<int> vec5{1, 2, 3, 4, 5, 6};
-    vec5.at(1) = 88; // at函数返回位于指定位置 pos 的元素的引用，有边界检查。
+    // list常用的4种构造方式
+    list<string> list1(3, "a"); // 1
+    display(list1);
+    deque<string> list2{"beijing", "shanghai", "shenzhen", "nanjing"}; // 2
+    display(list2);
+    deque<string> list3(deq2.begin(), deq2.end()); // 3
+    display(list3);
+    deque<string> list4(deq3); // 4
+    display(list4);
+}
+
+// assign，替换容器的内容
+void test1()
+{
+    // vector3种替换方式
+    vector<string> vec1{"1", "2"};
+    vector<string> vec2{"3", "4"};
+    vec1.assign(3, "a"); // 1
+    display(vec1);
+    vec1.assign(vec2.begin(), vec2.end()); // 2
+    display(vec1);
+    vec1.assign({"c++", "11"}); // 3
+    display(vec1);
+    cout << endl;
+
+    // deque3种替换方式
+    deque<string> deq1{"1", "2"};
+    deque<string> deq2{"3", "4"};
+    deq1.assign(3, "a"); // 1
+    display(deq1);
+    deq1.assign(vec2.begin(), vec2.end()); // 2
+    display(deq1);
+    deq1.assign({"c++", "11"}); // 3
+    display(deq1);
+    cout << endl;
+
+    // list3种替换方式
+    list<string> list1{"1", "2"};
+    list<string> list2{"3", "4"};
+    list1.assign(3, "a"); // 1
+    display(list1);
+    list1.assign(vec2.begin(), vec2.end()); // 2
+    display(list1);
+    list1.assign({"c++", "11"}); // 3
+    display(list1);
+    cout << endl;
+}
+
+// 元素访问
+void test2()
+{
+    // vector4种常用访问方式
+    vector<int> vec1{1, 2, 3, 4, 5, 6};
+    vec1.at(1) = 88; // at函数返回位于指定位置 pos 的元素的引用，有边界检查。
     try {
-        vec5.at(6) = 66;
-    } catch (std::out_of_range const& exc) {
+        vec1.at(6) = 66;
+    } catch (std::out_of_range const &exc) {
         std::cout << exc.what() << '\n';
     }
-    vec5[5] = 55;
-    vec5.front() = 11; // front函数返回首元素的引用。
-    vec5.back() = 66; // back函数返回最后元素的引用。
-    display(vec5);
+    vec1[5] = 55; // 索引访问
+    vec1.front() = 11; // front函数返回首元素的引用。
+    vec1.back() = 66; // back函数返回最后元素的引用。
+    display(vec1);
     cout << endl;
 
-    // 迭代器
-    for(auto it = vec5.begin(); it != vec5.end(); ++it) {
+    // deque4种常用访问方式
+    deque<int> deq1{1, 2, 3, 4, 5, 6};
+    deq1.at(1) = 88; // at函数返回位于指定位置 pos 的元素的引用，有边界检查。
+    try {
+        deq1.at(6) = 66;
+    } catch (std::out_of_range const &exc) {
+        std::cout << exc.what() << '\n';
+    }
+    deq1[5] = 55; // 索引访问
+    deq1.front() = 11; // front函数返回首元素的引用。
+    deq1.back() = 66; // back函数返回最后元素的引用。
+    display(deq1);
+    cout << endl;
+
+    // list2种常用访问方式
+    list<int> list1{1, 2, 3, 4, 5, 6};
+    list1.front() = 77; // front函数返回首元素的引用。
+    list1.back() = 99; // back函数返回最后元素的引用。
+    display(list1);
+    cout << endl;
+}
+
+// 迭代器
+void test3()
+{
+    // 3种容器拥有同样的迭代器
+    vector<int> vec1{1, 2, 3, 4, 5, 6};
+    for (auto it = vec1.begin(); it != vec1.end(); ++it) {
         cout << *it << " ";
     }
     cout << endl;
-    for(auto it = vec5.rbegin(); it != vec5.rend(); ++it) {
+    for (auto it = vec1.rbegin(); it != vec1.rend(); ++it) {
         cout << *it << " ";
     }
     cout << endl;
 
-    // 容量
-    if(!vec5.empty()) {
-        cout << "size = " << vec5.size() << endl; // 返回容器中的元素数
-        cout << "capacity = " << vec5.capacity() << endl; // 返回容器当前已为之分配空间的元素数
-        vec5.reserve(10); // 若参数大于capacity，则增加vector的capacity，且所有迭代器失效；反之什么也不做；
-        cout << "size = " << vec5.size() << endl;
-        cout << "capacity = " << vec5.capacity() << endl;
-        vec5.reserve(5);
-        cout << "size = " << vec5.size() << endl;
-        cout << "capacity = " << vec5.capacity() << endl;
-        auto it = vec5.begin();
+    deque<int> deq1{1, 2, 3, 4, 5, 6};
+    for (auto it = deq1.begin(); it != deq1.end(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
+    for (auto it = deq1.rbegin(); it != deq1.rend(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    list<int> list1{1, 2, 3, 4, 5, 6};
+    for (auto it = list1.begin(); it != list1.end(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
+    for (auto it = list1.rbegin(); it != list1.rend(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
+}
+
+// 容量
+void test4()
+{
+    // vector5种常用的容量函数
+    vector<int> vec1{1, 2, 3, 4, 5, 6};
+    if (!vec1.empty()) { // 检查容器是否为空
+        cout << "size = " << vec1.size() << endl; // 返回容器中的元素数
+        cout << "capacity = " << vec1.capacity() << endl; // 返回容器当前已为之分配空间的元素数
+        vec1.reserve(10); // 若参数大于capacity，则增加vector的capacity，且所有迭代器失效；反之什么也不做；
+        cout << "size = " << vec1.size() << endl;
+        cout << "capacity = " << vec1.capacity() << endl;
+        vec1.reserve(5);
+        cout << "size = " << vec1.size() << endl;
+        cout << "capacity = " << vec1.capacity() << endl;
+        auto it = vec1.begin();
         cout << "before shrink_to_fit " << *it << endl;
-        vec5.shrink_to_fit(); // 当capacity大于size时，使capacity与size值一样，且所有迭代器失效；反之什么也不做。
+        vec1.shrink_to_fit(); // 当capacity大于size时，使capacity与size值一样，且所有迭代器失效；反之什么也不做。
 //        cout << "after shrink_to_fit " << *it << endl;
-        cout << "size = " << vec5.size() << endl;
-        cout << "capacity = " << vec5.capacity() << endl;
+        cout << "size = " << vec1.size() << endl;
+        cout << "capacity = " << vec1.capacity() << endl;
         cout << endl;
     }
 
-    // 修改器
-    auto it = vec5.begin();
+    // deque3种常用的容量函数
+    deque<int> deq1{1, 2, 3, 4, 5, 6};
+    if(!deq1.empty()) { // 检查容器是否为空
+        cout << "size = " << deq1.size() << endl; // 返回容器中的元素数
+        deq1.clear();
+        cout << "size = " << deq1.size() << endl;
+        deq1.shrink_to_fit(); // 释放不使用的内存，前面clear清除容器中所有的元素，但分配的内存还在
+    }
+
+    // list2种常用的容量函数
+    list<int> list1{1, 2, 3, 4, 5, 6};
+    if(!list1.empty()) {
+        cout << "size = " << list1.size() << endl;
+    }
+}
+
+// 修改器
+void test5()
+{
+    // vector
+    vector<int> vec1{1, 2, 3, 4, 5, 6};
+    auto it = vec1.begin();
     cout << "before clear " << *it << endl;
-    vec5.clear(); // 擦除容器所有元素，此后size为0，capacity不变，迭代器失效
+    vec1.clear(); // 擦除容器所有元素，此后size为0，capacity不变，迭代器失效，但分配的内存还在
 //    *it = 999;
 //    cout << "after clear " << *it << endl;
-    cout << "size = " << vec5.size() << endl;
-    cout << "capacity = " << vec5.capacity() << endl;
+    cout << "size = " << vec1.size() << endl;
+    cout << "capacity = " << vec1.capacity() << endl;
 
     vector<string> svec{"beijing", "shanghai", "guangzhou", "shenzheng"};
     svec.insert(svec.begin(), "zhongguo"); // 在给定位置前插入，返回被插入元素的迭代器
@@ -158,11 +283,30 @@ void test0()
         cout << *it2 << " ";
     }
     cout << endl;
+
+    // deque，包含上面的函数
+    deque<int> deq1{1, 2, 3};
+    deq1.push_front(0);
+    display(deq1);
+    deq1.pop_front();
+    display(deq1);
+    deq1.emplace_front(0);
+    display(deq1);
+    cout << endl;
+
+    // list，包含上面的函数，与deque一致
+
 }
 
 int main()
 {
-    test0();
+//    test0();
+//    test1();
+//    test2();
+//    test3();
+//    test4();
+    test5();
+
     return 0;
 }
 
