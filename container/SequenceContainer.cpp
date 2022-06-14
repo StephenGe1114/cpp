@@ -232,7 +232,7 @@ void test5()
     it1 = svec.insert(svec.end(), svec1.begin(), svec1.end()); // 通过迭代器插入给定位置前，返回被插入元素首元素的迭代器
     cout << *(it1 + 1) << endl;
     display(svec);
-    it1 = svec.insert(svec.end(), {"dd", "ee", "ff"});
+    it1 = svec.insert(svec.end(), {"dd", "ee", "ff"}); // 通过初始化列表插入给定位置前，返回被插入元素首元素的迭代器
     cout << *(it1 + 2) << endl;
     display(svec);
 
