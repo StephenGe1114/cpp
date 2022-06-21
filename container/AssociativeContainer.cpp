@@ -102,23 +102,30 @@ void test0()
 // 容量
 void test1()
 {
-	{
-		set<int> a;
-		if(a.empty()) {
-			cout << "empty" << endl;
-		}
-		set<int> b{1, 2};
-		cout << "size = " << b.size() << endl;
-		cout << endl;
+	// set
+	set<int> a;
+	if (a.empty()) { //
+		cout << "empty" << endl;
 	}
+	set<int> b{1, 2};
+	cout << "size = " << b.size() << endl; //
+	cout << endl;
+
 }
 
 // 修改器
 void test2()
 {
+	// set
 	set<int> a{1, 2, 3};
 	a.clear();
 	cout << "size = " << a.size() << endl;
+
+	auto ret = a.insert(3);
+	if(ret.second) {
+		cout << "insert success " <<  *ret.first << endl;
+	}
+
 }
 
 void test3()
